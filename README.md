@@ -124,6 +124,24 @@ Ignoring a single file called `foobar.txt`:
 	foobar\.txt
 
 
+Adding To An Existing Project
+-----------------------------
+
+When you run `git ftp init` you'll be uploading all files as they currently are.
+As far as git ftp is concerned, your remote host has 0 files.  If you're adding
+to an existing project, your host is likely just fine and you don't want to
+reupload the whole site.
+
+To start off in the position that your current local repository is already synced
+correctly with your remote host, just create a `.git-ftp.log` file in the root of
+your remote's public www directory.  Run `git log` locally and copy the last commit
+hash and paste it into the remote `.git-ftp.log` file.
+
+Now you don't need to run `git ftp init`, you can run `git ftp push` and it should
+return `No changed files for <host>/. Everything up-to-date.`  The next time you
+make a change and commit it you'll only be uploading the files you changed.
+
+
 Testing and Help Manual
 -----------------------
 
